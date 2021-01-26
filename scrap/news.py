@@ -3,10 +3,19 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from selenium import webdriver
 import time
+from selenium.webdriver.chrome.options import Options
+from slacker import Slacker
 
-url = "https://cwsjames.tistory.com/"
+# 크롬 드라이버 호환성 에러로 인해 options 설정을 추가한다.
+options = Options()
+options.add_argument('--no-sandbox')
+
+url = "url주소"
 webpage = requests.get(url)
-wd = webdriver.Chrome('C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+
+#wd = webdriver.Chrome('C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+wd = webdriver.Chrome(chrome_options=options, executable_path='C:/Program Files/Google/Chrome/Application/chromedriver.exe')
+
 todayArray = []
 today = datetime.today()
 #todayStr = datetime.today().strftime("%Y년 %m월 %d일") #yyyy년 mm월 dd일
@@ -16,6 +25,9 @@ todayStr2 = datetime.today().strftime("%Y/%m/%d/")
 f = open('C:/Users/LHE/Desktop/' + todayStr + ' news.txt', 'a', -1, 'utf-8')
 resultStr = ""
 #print(webpage.text)
+
+# Slack 봇 설정을 추가한다
+Slack = Slacker('토큰키값')
 
 soup = BeautifulSoup(webpage.content, "html.parser")
 aTags = soup.find('div','another_category').find_all('a')
@@ -49,4 +61,5 @@ for page in todayArray:
 
 # 파일 쓰기
 f.write(resultStr)
+slack.chat.post_message('#채널명', resultStr)
 print('#########################end#########################')
