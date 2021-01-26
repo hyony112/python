@@ -12,7 +12,7 @@ options = Options()
 options.add_argument('--no-sandbox')
 
 slack = Slacker('토큰키')
-url = "url?pageNum=1&cat=&cat1=&media_eco=&pageSize=10&sub=all&dispFlag=OFF&page=news&s_kwd=%B0%B3%C0%E5%C0%FC%A1%DA%C1%D6%BF%E4&s_page=news&go_page=&ord=1&ord1=1&ord2=0&s_keyword=%B0%B3%C0%E5%C0%FC%A1%DA%C1%D6%BF%E4%C0%CC%BD%B4+%C1%A1%B0%CB&s_i_keyword=%B0%B3%C0%E5%C0%FC%A1%DA%C1%D6%BF%E4&s_author=&y1=1991&m1=01&d1=01&y2=2021&m2=01&d2=26&ord=1&area=ttbd"
+url = "url"
 webpage = requests.get(url)
 wd = webdriver.Chrome(chrome_options=options, executable_path='C:/Program Files/Google/Chrome/Application/chromedriver.exe')
 
