@@ -4,7 +4,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-import re
+#import re
 from slacker import Slacker
 
 # 크롬 드라이버 호환성 에러로 인해 options 설정을 추가한다.
@@ -25,11 +25,6 @@ todayStr = datetime.today().strftime("%Y년 %m월 %d일") #yyyy년 mm월 dd일
 #f = open('C:/Users/LHE/Desktop/' + todayStr + ' news2.txt', 'a', -1, 'utf-8')
 resultStr = ""
 #print(webpage.text)
-
-def remove_tag(content):
-   cleanr =re.compile('<.*?>')
-   cleantext = re.sub(cleanr, '', content)
-   return cleantext
 
 soup = BeautifulSoup(webpage.content, "html.parser")
 #spanTags = soup.find('div','sub_list')
